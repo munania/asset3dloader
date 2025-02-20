@@ -120,8 +120,13 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          _buildAvatarControls(true),
-          _buildAvatarControls(false),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildAvatarControls(true),
+              _buildAvatarControls(false),
+            ],
+          ),
         ],
       ),
     );
