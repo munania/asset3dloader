@@ -120,72 +120,62 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text('Avatar 1'),
-                  Column(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () => rotateCharacter(
-                              isCharacterOne: true, isRotatingLeft: false),
-                          child: Icon(Icons.arrow_back)),
-                      ElevatedButton(
-                          onPressed: () {
-                            controller.playAnimation(
-                                animationName: selectedAnimation1);
-                          },
-                          child: Icon(Icons.play_arrow)),
-                      ElevatedButton(
-                          onPressed: () {
-                            controller.pauseAnimation();
-                          },
-                          child: Icon(Icons.pause)),
-                      ElevatedButton(
-                          onPressed: () => rotateCharacter(
-                              isCharacterOne: true, isRotatingLeft: true),
-                          child: Icon(Icons.arrow_forward)),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text('Avatar 2'),
-                  Column(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () => rotateCharacter(
-                              isCharacterOne: false, isRotatingLeft: false),
-                          child: Icon(Icons.arrow_back)),
-                      ElevatedButton(
-                          onPressed: () {
-                            controller2.playAnimation(
-                                animationName: selectedAnimation2);
-                          },
-                          child: Icon(Icons.play_arrow)),
-                      ElevatedButton(
-                          onPressed: () {
-                            controller2.pauseAnimation();
-                          },
-                          child: Icon(Icons.pause)),
-                      ElevatedButton(
-                          onPressed: () => rotateCharacter(
-                              isCharacterOne: false, isRotatingLeft: true),
-                          child: Icon(Icons.arrow_forward)),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+          _buildAvatarControls(true),
+          _buildAvatarControls(false),
         ],
       ),
+    );
+  }
+
+  Widget _buildAvatarControls(bool isFirstAvatar) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(isFirstAvatar ? 'Avatar 1' : 'Avatar 2',
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.rotate_left),
+              onPressed: () => rotateCharacter(
+                  isCharacterOne: isFirstAvatar, isRotatingLeft: true),
+            ),
+            Column(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.play_arrow),
+                  onPressed: () {
+                    if (isFirstAvatar) {
+                      controller.playAnimation(
+                          animationName: selectedAnimation1);
+                    } else {
+                      controller2.playAnimation(
+                          animationName: selectedAnimation2);
+                    }
+                  },
+                ),
+                IconButton(
+                  icon: const Icon(Icons.pause),
+                  onPressed: () {
+                    if (isFirstAvatar) {
+                      controller.pauseAnimation();
+                    } else {
+                      controller2.pauseAnimation();
+                    }
+                  },
+                ),
+              ],
+            ),
+            IconButton(
+              icon: const Icon(Icons.rotate_right),
+              onPressed: () => rotateCharacter(
+                  isCharacterOne: isFirstAvatar, isRotatingLeft: false),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
