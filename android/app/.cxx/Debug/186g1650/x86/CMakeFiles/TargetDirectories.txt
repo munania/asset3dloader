@@ -1,0 +1,2 @@
+C:/Users/HomePC/Documents/dev/hng/asset3dloader/android/app/.cxx/Debug/186g1650/x86/CMakeFiles/edit_cache.dir
+C:/Users/HomePC/Documents/dev/hng/asset3dloader/android/app/.cxx/Debug/186g1650/x86/CMakeFiles/rebuild_cache.dir
