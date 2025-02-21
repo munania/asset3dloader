@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   flutter_3d_controller: ^2.1.0
+  model_viewer_plus: ^1.9.1
+  file_picker: ^9.0.0
 
 
 dev_dependencies:
